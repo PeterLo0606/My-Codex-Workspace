@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>森嶼露營區｜訂位與營區介紹</title>
+  <title>彼得露營區｜訂位與營區介紹</title>
   <style>
     :root {
       --ink: #1f2a24;
@@ -151,7 +151,7 @@
       color: var(--white);
       background:
         linear-gradient(180deg, rgba(12, 28, 20, 0.2), rgba(12, 28, 20, 0.82)),
-        url("https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?auto=format&fit=crop&w=1800&q=80") center/cover;
+        url("assets/peter-camp-xinshe.png") center/cover;
     }
 
     .hero-inner,
@@ -525,8 +525,8 @@
     }
 
     .gallery-grid {
-      grid-template-columns: 1.2fr 0.8fr 0.8fr;
-      grid-auto-rows: 220px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-auto-rows: 260px;
     }
 
     .gallery-grid img {
@@ -537,7 +537,182 @@
     }
 
     .gallery-grid img:first-child {
-      grid-row: span 2;
+      grid-row: span 1;
+    }
+
+    .map-section {
+      background: var(--mist);
+    }
+
+    .camp-map {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .site-map {
+      position: relative;
+      min-height: 520px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.12)),
+        radial-gradient(circle at 18% 22%, rgba(231, 167, 63, 0.24), transparent 28%),
+        linear-gradient(160deg, #dbead9 0%, #c7e0c8 42%, #e8dcc0 43%, #e8dcc0 48%, #cfe5cc 49%, #d8eadb 100%);
+      box-shadow: var(--shadow);
+    }
+
+    .map-path {
+      position: absolute;
+      left: 8%;
+      right: 8%;
+      top: 48%;
+      height: 34px;
+      border-radius: 999px;
+      background: #d9c79d;
+      transform: rotate(-6deg);
+      box-shadow: inset 0 0 0 2px rgba(120, 92, 52, 0.12);
+    }
+
+    .zone {
+      position: absolute;
+      display: grid;
+      place-items: center;
+      padding: 16px;
+      border: 2px solid rgba(255, 255, 255, 0.86);
+      border-radius: 8px;
+      color: var(--white);
+      text-align: center;
+      box-shadow: 0 14px 28px rgba(31, 42, 36, 0.18);
+    }
+
+    .zone strong {
+      display: block;
+      font-size: 24px;
+      line-height: 1.2;
+    }
+
+    .zone span {
+      font-size: 13px;
+      opacity: 0.9;
+    }
+
+    .zone-a {
+      left: 8%;
+      top: 10%;
+      width: 34%;
+      height: 32%;
+      background: rgba(47, 111, 78, 0.9);
+    }
+
+    .zone-b {
+      right: 8%;
+      top: 12%;
+      width: 36%;
+      height: 28%;
+      background: rgba(46, 124, 136, 0.9);
+    }
+
+    .zone-c {
+      left: 12%;
+      bottom: 10%;
+      width: 42%;
+      height: 30%;
+      background: rgba(117, 102, 54, 0.9);
+    }
+
+    .zone-office {
+      right: 12%;
+      bottom: 20%;
+      width: 26%;
+      height: 22%;
+      background: rgba(31, 42, 36, 0.92);
+    }
+
+    .zone-bath {
+      right: 8%;
+      bottom: 7%;
+      width: 26%;
+      height: 12%;
+      background: rgba(231, 167, 63, 0.96);
+      color: #2f2616;
+    }
+
+    .map-legend {
+      display: grid;
+      gap: 14px;
+      align-content: center;
+    }
+
+    .legend-item {
+      display: grid;
+      grid-template-columns: 12px 1fr;
+      gap: 12px;
+      align-items: start;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+    }
+
+    .legend-dot {
+      width: 12px;
+      height: 12px;
+      margin-top: 7px;
+      border-radius: 50%;
+      background: var(--leaf);
+    }
+
+    .legend-dot.blue { background: var(--river); }
+    .legend-dot.olive { background: #756636; }
+    .legend-dot.dark { background: var(--ink); }
+    .legend-dot.sun { background: var(--sun); }
+
+    .legend-item h3 {
+      margin-bottom: 4px;
+      font-size: 18px;
+    }
+
+    .legend-item p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .attraction-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .attraction-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--white);
+    }
+
+    .attraction-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .attraction-card div {
+      padding: 18px;
+    }
+
+    .attraction-card h3 {
+      margin-bottom: 8px;
+      font-size: 19px;
+    }
+
+    .attraction-card p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 14px;
     }
 
     .location-grid {
@@ -552,8 +727,8 @@
       border-radius: 8px;
       overflow: hidden;
       background:
-        linear-gradient(rgba(47, 111, 78, 0.2), rgba(47, 111, 78, 0.2)),
-        url("https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1200&q=80") center/cover;
+        linear-gradient(135deg, rgba(47, 111, 78, 0.88), rgba(46, 124, 136, 0.76)),
+        repeating-linear-gradient(28deg, rgba(255, 255, 255, 0.18) 0 2px, transparent 2px 42px);
       position: relative;
     }
 
@@ -640,8 +815,13 @@
 
       .booking-wrap,
       .intro-grid,
-      .location-grid {
+      .location-grid,
+      .camp-map {
         grid-template-columns: 1fr;
+      }
+
+      .attraction-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       .summary {
@@ -682,8 +862,17 @@
       .type-grid,
       .facility-grid,
       .booking-form,
-      .gallery-grid {
+      .gallery-grid,
+      .attraction-grid {
         grid-template-columns: 1fr;
+      }
+
+      .site-map {
+        min-height: 440px;
+      }
+
+      .zone strong {
+        font-size: 19px;
       }
 
       .quick-info {
@@ -717,9 +906,9 @@
 <body>
   <header class="site-header">
     <nav class="nav" aria-label="主要導覽">
-      <a href="#top" class="brand" aria-label="森嶼露營區首頁">
+      <a href="#top" class="brand" aria-label="彼得露營區首頁">
         <span class="brand-mark">山</span>
-        <span>森嶼露營區</span>
+        <span>彼得露營區</span>
       </a>
       <div class="nav-links">
         <a href="#about">營區介紹</a>
@@ -733,12 +922,12 @@
   </header>
 
   <main id="top">
-    <section class="hero" aria-label="森嶼露營區形象">
+    <section class="hero" aria-label="彼得露營區形象">
       <div class="hero-inner">
         <div class="hero-content">
-          <p class="eyebrow">海拔 820 公尺｜森林系親子露營</p>
-          <h1>森嶼露營區</h1>
-          <p>在杉林、溪流與星空之間，留下剛剛好的距離。提供草地營位、免搭帳棚屋與包區活動，適合家庭、朋友與企業小旅行。</p>
+          <p class="eyebrow">台中新社｜丘陵花園系親子露營</p>
+          <h1>彼得露營區</h1>
+          <p>在花田、果園與緩緩起伏的河階台地之間，留下剛剛好的距離。提供草地營位、免搭帳棚屋與包區活動，適合家庭、朋友與企業小旅行。</p>
           <div class="hero-actions">
             <a class="btn" href="#booking">查看空位與訂位</a>
             <a class="btn secondary" href="#sites">瀏覽營位</a>
@@ -759,25 +948,25 @@
           <div class="section-title">
             <p class="eyebrow">營區介紹</p>
             <h2>保留自然，也把舒適準備好。</h2>
-            <p>森嶼坐落於山腰緩坡，白天可走森林步道與親水區，晚上能在營火旁看星。營區採分層規劃，減少互相干擾，也讓每一帳都有自己的風景。</p>
+            <p>彼得露營區坐落於台中市新社區的丘陵台地，周邊有花卉、香菇與果園產業。白天可在營區草地活動，也能順遊新社花海與香菇街；晚上回到帳邊看燈串和星空。</p>
           </div>
         </div>
         <div class="intro-grid">
           <div class="feature-photo">
-            <img src="https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?auto=format&fit=crop&w=1300&q=80" alt="森林中的露營帳篷與營火" />
+            <img src="assets/camp-common-lawn.png" alt="新社丘陵營區內的公共草地與野餐區" />
           </div>
           <div class="intro-copy">
             <article class="plain-panel">
               <h3>分區安靜管理</h3>
-              <p>A 區靠近草地與衛浴，適合親子；B 區視野開闊，適合好友小聚；C 區可包區，適合團體活動。</p>
+            <p>A 區靠近草地與衛浴，適合親子；B 區面向花田與果園，適合好友小聚；C 區可包區，適合團體活動。</p>
             </article>
             <article class="plain-panel">
               <h3>友善新手露營</h3>
-              <p>現場可租借桌椅、延長線與燈具，也提供免搭帳棚屋，第一次露營也能輕鬆入住。</p>
+            <p>現場可租借桌椅、延長線與燈具，也提供免搭帳棚屋。新手可以把時間留給煮咖啡、逛新社、看夕陽。</p>
             </article>
             <article class="plain-panel">
               <h3>在地食材選配</h3>
-              <p>可加購烤肉組、早餐籃與咖啡包，食材以鄰近農場與店家供應為主。</p>
+            <p>可加購烤肉組、早餐籃與咖啡包，食材以新社周邊農場、菇農與在地店家供應為主。</p>
             </article>
           </div>
         </div>
@@ -796,7 +985,7 @@
         </div>
         <div class="type-grid">
           <article class="camp-card">
-            <img src="https://images.unsplash.com/photo-1496545672447-f699b503d270?auto=format&fit=crop&w=900&q=80" alt="草地上的自搭帳營位" />
+            <img src="assets/site-wood-platforms.png" alt="多個空木棧板營位供客人自搭帳篷" />
             <div class="camp-card-body">
               <h3>草地自搭帳</h3>
               <p>5m x 8m 草地營位，附停車位、共用洗滌台與電源。</p>
@@ -805,7 +994,7 @@
             </div>
           </article>
           <article class="camp-card">
-            <img src="https://images.unsplash.com/photo-1510312305653-8ed496efae75?auto=format&fit=crop&w=900&q=80" alt="森林旁的豪華帳棚" />
+            <img src="assets/site-bell-tents.png" alt="營區內一排免搭鐘型帳" />
             <div class="camp-card-body">
               <h3>免搭鐘型帳</h3>
               <p>含雙人床、寢具、冷暖扇、小桌椅與戶外休憩區。</p>
@@ -814,7 +1003,7 @@
             </div>
           </article>
           <article class="camp-card">
-            <img src="https://images.unsplash.com/photo-1517824806704-9040b037703b?auto=format&fit=crop&w=900&q=80" alt="山林間的團體露營區" />
+            <img src="assets/site-group-zone.png" alt="含活動棚與野餐桌的團體包區" />
             <div class="camp-card-body">
               <h3>團體包區</h3>
               <p>獨立草坪、活動棚、營火區與專屬停車空間。</p>
@@ -909,12 +1098,41 @@
       </div>
     </section>
 
+    <section class="map-section">
+      <div class="section-inner">
+        <div class="section-head">
+          <div class="section-title">
+            <p class="eyebrow">營區地圖</p>
+            <h2>分區清楚，抵達後很好找。</h2>
+            <p>營本部位在入口動線旁，衛浴靠近主要步道；A 區適合親子、B 區看花田、C 區保留給團體包區。</p>
+          </div>
+        </div>
+        <div class="camp-map">
+          <div class="site-map" aria-label="彼得露營區分區示意圖">
+            <div class="map-path" aria-hidden="true"></div>
+            <div class="zone zone-a"><div><strong>A 區</strong><span>親子草地營位</span></div></div>
+            <div class="zone zone-b"><div><strong>B 區</strong><span>花田景觀營位</span></div></div>
+            <div class="zone zone-c"><div><strong>C 區</strong><span>團體包區</span></div></div>
+            <div class="zone zone-office"><div><strong>營本部</strong><span>報到／補給</span></div></div>
+            <div class="zone zone-bath"><div><strong>衛浴</strong></div></div>
+          </div>
+          <div class="map-legend">
+            <article class="legend-item"><span class="legend-dot"></span><div><h3>A 區</h3><p>靠近衛浴與草地活動區，適合有小朋友的家庭。</p></div></article>
+            <article class="legend-item"><span class="legend-dot blue"></span><div><h3>B 區</h3><p>視野朝向花田與果園，夜間較安靜，適合朋友小聚。</p></div></article>
+            <article class="legend-item"><span class="legend-dot olive"></span><div><h3>C 區</h3><p>可獨立包區，旁邊保留活動棚與營火空間。</p></div></article>
+            <article class="legend-item"><span class="legend-dot dark"></span><div><h3>營本部</h3><p>辦理入住、租借裝備、購買冰塊木炭與簡單補給。</p></div></article>
+            <article class="legend-item"><span class="legend-dot sun"></span><div><h3>衛浴</h3><p>乾濕分離淋浴間、洗手台、吹風機與夜間照明。</p></div></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="facilities">
       <div class="section-inner">
         <div class="section-head">
           <div class="section-title">
             <p class="eyebrow">設施服務</p>
-            <h2>山裡可以慢，基本需求不用將就。</h2>
+            <h2>在新社放慢腳步，基本需求不用將就。</h2>
           </div>
         </div>
         <div class="facility-grid">
@@ -931,15 +1149,41 @@
         <div class="section-head">
           <div class="section-title">
             <p class="eyebrow">營區景色</p>
-            <h2>白天走進森林，晚上抬頭看星。</h2>
+            <h2>看得到營本部、衛浴與夜間營火動線。</h2>
           </div>
         </div>
         <div class="gallery-grid">
-          <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1000&q=80" alt="山林草地與木屋景色" />
-          <img src="https://images.unsplash.com/photo-1487730116645-74489c95b41b?auto=format&fit=crop&w=900&q=80" alt="山谷晨霧景色" />
-          <img src="https://images.unsplash.com/photo-1504851149312-7a075b496cc7?auto=format&fit=crop&w=900&q=80" alt="夜晚星空下的帳篷" />
-          <img src="https://images.unsplash.com/photo-1533577116850-9cc66cad8a9b?auto=format&fit=crop&w=900&q=80" alt="森林步道與陽光" />
-          <img src="https://images.unsplash.com/photo-1518602164578-cd0074062767?auto=format&fit=crop&w=900&q=80" alt="戶外營火聚會" />
+          <img src="assets/camp-office.png" alt="彼得露營區營本部與報到空間" />
+          <img src="assets/camp-bathroom.png" alt="彼得露營區乾淨的衛浴與洗滌區" />
+          <img src="assets/camp-night-path.png" alt="彼得露營區夜間燈串步道與營火區" />
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-inner">
+        <div class="section-head">
+          <div class="section-title">
+            <p class="eyebrow">周邊景點</p>
+            <h2>露營之外，也能安排一趟新社小旅行。</h2>
+            <p>新社長年以花卉、香菇、水果與休閒農業聞名，從彼得露營區出發，可安排半日或一日順遊。</p>
+          </div>
+        </div>
+        <div class="attraction-grid">
+          <article class="attraction-card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/22/Taichung_International_Flower_Carpet_Festival-60.2024-11-24.jpg" alt="新社花海花毯節" />
+            <div>
+              <h3>新社花海</h3>
+              <p>季節限定花田與花毯展區，適合白天拍照散步，回程再進營區煮晚餐。</p>
+            </div>
+          </article>
+          <article class="attraction-card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/%E6%96%B0%E7%A4%BE%E8%8F%87%E9%A1%9E%E7%A8%AE%E6%A4%8D.JPG" alt="新社菇類種植" />
+            <div>
+              <h3>新社香菇街</h3>
+              <p>可採買香菇、菇類伴手禮與在地小吃，很適合作為露營料理的加菜路線。</p>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -954,9 +1198,9 @@
         </div>
         <div class="location-grid">
           <div class="plain-panel">
-            <h3>森嶼露營區</h3>
-            <p>苗栗縣南庄鄉森嶼路 66 號<br />入住時間 14:00 後，退房時間 11:00 前。</p>
-            <p>開車：國道一號頭份交流道下，接 124 縣道約 35 分鐘。大眾運輸：搭至竹南站後轉乘接駁車，需提前預約。</p>
+            <h3>彼得露營區</h3>
+            <p>台中市新社區彼得路 66 號<br />入住時間 14:00 後，退房時間 11:00 前。</p>
+            <p>開車：由國道四號接台 3 線往新社方向，依產業道路與營區指標前往。大眾運輸：可搭至台中車站後轉乘新社方向公車，接駁服務需提前預約。</p>
             <a class="btn" href="#booking">預約接駁或訂位</a>
           </div>
           <div class="map-panel" aria-label="營區示意地圖">
@@ -994,8 +1238,8 @@
 
   <footer>
     <div class="footer-inner">
-      <div><strong>森嶼露營區</strong><br />訂位專線 03-765-6688｜LINE @forestcamp</div>
-      <div>© 2026 Mori Isle Campground</div>
+      <div><strong>彼得露營區</strong><br />訂位專線 04-2588-6688｜LINE @petercamp</div>
+      <div>© 2026 Peter Campground</div>
     </div>
   </footer>
 
