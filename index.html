@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>森嶼露營區｜訂位與營區介紹</title>
+  <style>
+    :root {
+      --ink: #1f2a24;
+      --muted: #66736d;
+      --line: #dbe2dc;
+      --paper: #fbfcf8;
+      --mist: #edf4ee;
+      --leaf: #2f6f4e;
+      --leaf-dark: #214d39;
+      --sun: #e7a73f;
+      --river: #2e7c88;
+      --white: #ffffff;
+      --shadow: 0 18px 40px rgba(31, 42, 36, 0.14);
+      font-family: "Noto Sans TC", "Microsoft JhengHei", system-ui, -apple-system, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.6;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    .site-header {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 10;
+      background: rgba(251, 252, 248, 0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(219, 226, 220, 0.8);
+    }
+
+    .nav {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: var(--white);
+      background: var(--leaf);
+      font-size: 22px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .nav-links a {
+      padding: 10px 12px;
+      border-radius: 6px;
+    }
+
+    .nav-links a:hover {
+      background: var(--mist);
+      color: var(--ink);
+    }
+
+    .nav-cta,
+    .btn {
+      border: 0;
+      border-radius: 6px;
+      padding: 11px 16px;
+      color: var(--white);
+      background: var(--leaf);
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 44px;
+    }
+
+    .nav-cta:hover,
+    .btn:hover {
+      transform: translateY(-1px);
+      background: var(--leaf-dark);
+      box-shadow: 0 12px 24px rgba(47, 111, 78, 0.22);
+    }
+
+    .btn.secondary {
+      color: var(--leaf-dark);
+      background: var(--white);
+      border: 1px solid var(--line);
+    }
+
+    .btn.secondary:hover {
+      background: var(--mist);
+      box-shadow: none;
+    }
+
+    .hero {
+      min-height: 92vh;
+      display: grid;
+      align-items: end;
+      padding: 130px 0 64px;
+      color: var(--white);
+      background:
+        linear-gradient(180deg, rgba(12, 28, 20, 0.2), rgba(12, 28, 20, 0.82)),
+        url("https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?auto=format&fit=crop&w=1800&q=80") center/cover;
+    }
+
+    .hero-inner,
+    .section-inner {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .hero-content {
+      width: min(760px, 100%);
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      color: var(--sun);
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      margin-bottom: 18px;
+      font-size: clamp(42px, 8vw, 82px);
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .hero p {
+      width: min(620px, 100%);
+      color: rgba(255, 255, 255, 0.88);
+      font-size: 19px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .quick-info {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1px;
+      margin-top: 48px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .quick-info div {
+      padding: 18px;
+      background: rgba(19, 35, 27, 0.54);
+      backdrop-filter: blur(12px);
+    }
+
+    .quick-info strong {
+      display: block;
+      font-size: 24px;
+      line-height: 1.15;
+    }
+
+    .quick-info span {
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 14px;
+    }
+
+    section {
+      padding: 88px 0;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 28px;
+      align-items: end;
+      margin-bottom: 34px;
+    }
+
+    .section-title {
+      width: min(620px, 100%);
+    }
+
+    .section-title h2 {
+      margin-bottom: 10px;
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.12;
+      letter-spacing: 0;
+    }
+
+    .section-title p {
+      color: var(--muted);
+      margin-bottom: 0;
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .feature-photo {
+      min-height: 520px;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .feature-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .intro-copy {
+      display: grid;
+      gap: 16px;
+      align-content: center;
+    }
+
+    .plain-panel {
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+    }
+
+    .plain-panel h3 {
+      margin-bottom: 8px;
+      font-size: 22px;
+    }
+
+    .plain-panel p {
+      color: var(--muted);
+      margin-bottom: 0;
+    }
+
+    .camp-types {
+      background: var(--mist);
+    }
+
+    .type-grid,
+    .facility-grid,
+    .gallery-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .type-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .camp-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+    }
+
+    .camp-card img {
+      height: 220px;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .camp-card-body {
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      gap: 12px;
+    }
+
+    .price-row {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--line);
+    }
+
+    .price-row strong {
+      font-size: 24px;
+      color: var(--leaf-dark);
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: #eef6f7;
+      color: var(--river);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .booking-wrap {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .booking-form {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #fff;
+      color: var(--ink);
+      padding: 12px 13px;
+      min-height: 46px;
+      outline: none;
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--leaf);
+      box-shadow: 0 0 0 4px rgba(47, 111, 78, 0.12);
+    }
+
+    .summary {
+      position: sticky;
+      top: 92px;
+      padding: 24px;
+      border-radius: 8px;
+      background: var(--leaf-dark);
+      color: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .summary h3 {
+      margin-bottom: 16px;
+      font-size: 24px;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    .summary-row strong {
+      color: var(--white);
+      text-align: right;
+    }
+
+    .total {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .total strong {
+      color: var(--sun);
+      font-size: 32px;
+      line-height: 1;
+    }
+
+    .notice {
+      margin: 16px 0 0;
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 14px;
+    }
+
+    .form-message {
+      display: none;
+      grid-column: 1 / -1;
+      padding: 14px 16px;
+      border-radius: 6px;
+      color: #17452f;
+      background: #e7f4ec;
+      font-weight: 700;
+    }
+
+    .form-message.show {
+      display: block;
+    }
+
+    .facility-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .facility {
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+      min-height: 190px;
+    }
+
+    .facility-icon {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 16px;
+      border-radius: 50%;
+      background: var(--mist);
+      font-size: 24px;
+    }
+
+    .facility h3 {
+      margin-bottom: 8px;
+      font-size: 20px;
+    }
+
+    .facility p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .gallery {
+      background: #f6f8f4;
+    }
+
+    .gallery-grid {
+      grid-template-columns: 1.2fr 0.8fr 0.8fr;
+      grid-auto-rows: 220px;
+    }
+
+    .gallery-grid img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .gallery-grid img:first-child {
+      grid-row: span 2;
+    }
+
+    .location-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .map-panel {
+      min-height: 420px;
+      border-radius: 8px;
+      overflow: hidden;
+      background:
+        linear-gradient(rgba(47, 111, 78, 0.2), rgba(47, 111, 78, 0.2)),
+        url("https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1200&q=80") center/cover;
+      position: relative;
+    }
+
+    .map-marker {
+      position: absolute;
+      left: 50%;
+      top: 48%;
+      transform: translate(-50%, -50%);
+      width: 74px;
+      height: 74px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: var(--white);
+      background: var(--leaf);
+      border: 8px solid rgba(255, 255, 255, 0.8);
+      box-shadow: var(--shadow);
+      font-size: 28px;
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    details {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+      padding: 18px 20px;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 800;
+    }
+
+    details p {
+      margin: 12px 0 0;
+      color: var(--muted);
+    }
+
+    footer {
+      padding: 34px 0;
+      color: rgba(255, 255, 255, 0.72);
+      background: #17231c;
+    }
+
+    .footer-inner {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .footer-inner strong {
+      color: var(--white);
+    }
+
+    @media (max-width: 980px) {
+      .nav {
+        min-height: 64px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        min-height: 86vh;
+        padding-top: 108px;
+      }
+
+      .quick-info,
+      .type-grid,
+      .facility-grid,
+      .booking-wrap,
+      .intro-grid,
+      .location-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .booking-wrap,
+      .intro-grid,
+      .location-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .summary {
+        position: static;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .nav {
+        width: min(100% - 24px, 1180px);
+      }
+
+      .brand span:last-child {
+        max-width: 150px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .nav-cta {
+        padding: 10px 12px;
+      }
+
+      .hero-inner,
+      .section-inner,
+      .footer-inner {
+        width: min(100% - 24px, 1180px);
+      }
+
+      section {
+        padding: 64px 0;
+      }
+
+      .section-head {
+        display: block;
+      }
+
+      .quick-info,
+      .type-grid,
+      .facility-grid,
+      .booking-form,
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .quick-info {
+        margin-top: 34px;
+      }
+
+      .feature-photo,
+      .map-panel {
+        min-height: 320px;
+      }
+
+      .booking-form {
+        padding: 20px;
+      }
+
+      .gallery-grid {
+        grid-auto-rows: 230px;
+      }
+
+      .gallery-grid img:first-child {
+        grid-row: span 1;
+      }
+
+      .footer-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="主要導覽">
+      <a href="#top" class="brand" aria-label="森嶼露營區首頁">
+        <span class="brand-mark">山</span>
+        <span>森嶼露營區</span>
+      </a>
+      <div class="nav-links">
+        <a href="#about">營區介紹</a>
+        <a href="#sites">營位房型</a>
+        <a href="#booking">線上訂位</a>
+        <a href="#facilities">設施服務</a>
+        <a href="#location">交通資訊</a>
+      </div>
+      <a class="nav-cta" href="#booking">立即訂位</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-label="森嶼露營區形象">
+      <div class="hero-inner">
+        <div class="hero-content">
+          <p class="eyebrow">海拔 820 公尺｜森林系親子露營</p>
+          <h1>森嶼露營區</h1>
+          <p>在杉林、溪流與星空之間，留下剛剛好的距離。提供草地營位、免搭帳棚屋與包區活動，適合家庭、朋友與企業小旅行。</p>
+          <div class="hero-actions">
+            <a class="btn" href="#booking">查看空位與訂位</a>
+            <a class="btn secondary" href="#sites">瀏覽營位</a>
+          </div>
+        </div>
+        <div class="quick-info" aria-label="營區摘要">
+          <div><strong>28</strong><span>組獨立營位</span></div>
+          <div><strong>6</strong><span>間免搭帳棚屋</span></div>
+          <div><strong>24h</strong><span>熱水與夜間照明</span></div>
+          <div><strong>25 分</strong><span>距離老街車程</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="section-inner">
+        <div class="section-head">
+          <div class="section-title">
+            <p class="eyebrow">營區介紹</p>
+            <h2>保留自然，也把舒適準備好。</h2>
+            <p>森嶼坐落於山腰緩坡，白天可走森林步道與親水區，晚上能在營火旁看星。營區採分層規劃，減少互相干擾，也讓每一帳都有自己的風景。</p>
+          </div>
+        </div>
+        <div class="intro-grid">
+          <div class="feature-photo">
+            <img src="https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?auto=format&fit=crop&w=1300&q=80" alt="森林中的露營帳篷與營火" />
+          </div>
+          <div class="intro-copy">
+            <article class="plain-panel">
+              <h3>分區安靜管理</h3>
+              <p>A 區靠近草地與衛浴，適合親子；B 區視野開闊，適合好友小聚；C 區可包區，適合團體活動。</p>
+            </article>
+            <article class="plain-panel">
+              <h3>友善新手露營</h3>
+              <p>現場可租借桌椅、延長線與燈具，也提供免搭帳棚屋，第一次露營也能輕鬆入住。</p>
+            </article>
+            <article class="plain-panel">
+              <h3>在地食材選配</h3>
+              <p>可加購烤肉組、早餐籃與咖啡包，食材以鄰近農場與店家供應為主。</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sites" class="camp-types">
+      <div class="section-inner">
+        <div class="section-head">
+          <div class="section-title">
+            <p class="eyebrow">營位房型</p>
+            <h2>選一種剛好適合你的住法。</h2>
+            <p>價格會依平假日調整；下方訂位表單可即時計算預估金額。</p>
+          </div>
+          <a class="btn secondary" href="#booking">我要訂位</a>
+        </div>
+        <div class="type-grid">
+          <article class="camp-card">
+            <img src="https://images.unsplash.com/photo-1496545672447-f699b503d270?auto=format&fit=crop&w=900&q=80" alt="草地上的自搭帳營位" />
+            <div class="camp-card-body">
+              <h3>草地自搭帳</h3>
+              <p>5m x 8m 草地營位，附停車位、共用洗滌台與電源。</p>
+              <div class="tag-list"><span class="tag">最多 4 人</span><span class="tag">寵物友善</span></div>
+              <div class="price-row"><span>每晚起</span><strong>NT$1,200</strong></div>
+            </div>
+          </article>
+          <article class="camp-card">
+            <img src="https://images.unsplash.com/photo-1510312305653-8ed496efae75?auto=format&fit=crop&w=900&q=80" alt="森林旁的豪華帳棚" />
+            <div class="camp-card-body">
+              <h3>免搭鐘型帳</h3>
+              <p>含雙人床、寢具、冷暖扇、小桌椅與戶外休憩區。</p>
+              <div class="tag-list"><span class="tag">最多 3 人</span><span class="tag">附寢具</span></div>
+              <div class="price-row"><span>每晚起</span><strong>NT$3,600</strong></div>
+            </div>
+          </article>
+          <article class="camp-card">
+            <img src="https://images.unsplash.com/photo-1517824806704-9040b037703b?auto=format&fit=crop&w=900&q=80" alt="山林間的團體露營區" />
+            <div class="camp-card-body">
+              <h3>團體包區</h3>
+              <p>獨立草坪、活動棚、營火區與專屬停車空間。</p>
+              <div class="tag-list"><span class="tag">8-24 人</span><span class="tag">可辦活動</span></div>
+              <div class="price-row"><span>每晚起</span><strong>NT$8,800</strong></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="booking">
+      <div class="section-inner">
+        <div class="section-head">
+          <div class="section-title">
+            <p class="eyebrow">線上訂位</p>
+            <h2>填寫需求，立即產生訂位明細。</h2>
+            <p>此為前端預約示範頁，送出後會顯示訂位確認訊息；若要串接金流或後台可再擴充。</p>
+          </div>
+        </div>
+        <div class="booking-wrap">
+          <form class="booking-form" id="bookingForm">
+            <div class="field">
+              <label for="checkin">入住日期</label>
+              <input id="checkin" name="checkin" type="date" required />
+            </div>
+            <div class="field">
+              <label for="checkout">退房日期</label>
+              <input id="checkout" name="checkout" type="date" required />
+            </div>
+            <div class="field">
+              <label for="siteType">營位類型</label>
+              <select id="siteType" name="siteType">
+                <option value="grass" data-price="1200">草地自搭帳｜NT$1,200/晚</option>
+                <option value="bell" data-price="3600">免搭鐘型帳｜NT$3,600/晚</option>
+                <option value="group" data-price="8800">團體包區｜NT$8,800/晚</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="sitesCount">數量</label>
+              <select id="sitesCount" name="sitesCount">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="adults">大人人數</label>
+              <input id="adults" name="adults" type="number" value="2" min="1" max="24" />
+            </div>
+            <div class="field">
+              <label for="children">孩童人數</label>
+              <input id="children" name="children" type="number" value="0" min="0" max="20" />
+            </div>
+            <div class="field">
+              <label for="name">聯絡姓名</label>
+              <input id="name" name="name" type="text" placeholder="王小森" required />
+            </div>
+            <div class="field">
+              <label for="phone">手機號碼</label>
+              <input id="phone" name="phone" type="tel" placeholder="0912-345-678" required />
+            </div>
+            <div class="field full">
+              <label for="addons">加購服務</label>
+              <select id="addons" name="addons">
+                <option value="0">不需加購</option>
+                <option value="680">烤肉食材組｜NT$680/人</option>
+                <option value="320">早餐籃｜NT$320/人</option>
+                <option value="1200">桌椅燈具套組｜NT$1,200/組</option>
+              </select>
+            </div>
+            <div class="field full">
+              <label for="notes">備註</label>
+              <textarea id="notes" name="notes" placeholder="例如：需要相鄰營位、晚到、素食需求"></textarea>
+            </div>
+            <div class="form-message" id="formMessage" role="status"></div>
+            <button class="btn" type="submit">送出訂位需求</button>
+          </form>
+
+          <aside class="summary" aria-label="訂位摘要">
+            <h3>訂位摘要</h3>
+            <div class="summary-row"><span>入住天數</span><strong id="nightsText">1 晚</strong></div>
+            <div class="summary-row"><span>營位單價</span><strong id="priceText">NT$1,200</strong></div>
+            <div class="summary-row"><span>營位數量</span><strong id="countText">1</strong></div>
+            <div class="summary-row"><span>加購項目</span><strong id="addonText">NT$0</strong></div>
+            <div class="total"><span>預估總額</span><strong id="totalText">NT$1,200</strong></div>
+            <p class="notice">實際空位、押金與取消規則會由營區人員回覆確認。</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="facilities">
+      <div class="section-inner">
+        <div class="section-head">
+          <div class="section-title">
+            <p class="eyebrow">設施服務</p>
+            <h2>山裡可以慢，基本需求不用將就。</h2>
+          </div>
+        </div>
+        <div class="facility-grid">
+          <article class="facility"><div class="facility-icon">浴</div><h3>乾濕分離衛浴</h3><p>男女分區、穩定熱水、吹風機與置物架。</p></article>
+          <article class="facility"><div class="facility-icon">電</div><h3>營位獨立電源</h3><p>每帳提供 110V 插座，夜間照明動線清楚。</p></article>
+          <article class="facility"><div class="facility-icon">火</div><h3>營火與烤肉區</h3><p>指定區域可使用焚火台，現場可租借設備。</p></article>
+          <article class="facility"><div class="facility-icon">食</div><h3>販售補給</h3><p>提供冰塊、木炭、飲品、簡易食材與咖啡。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery">
+      <div class="section-inner">
+        <div class="section-head">
+          <div class="section-title">
+            <p class="eyebrow">營區景色</p>
+            <h2>白天走進森林，晚上抬頭看星。</h2>
+          </div>
+        </div>
+        <div class="gallery-grid">
+          <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1000&q=80" alt="山林草地與木屋景色" />
+          <img src="https://images.unsplash.com/photo-1487730116645-74489c95b41b?auto=format&fit=crop&w=900&q=80" alt="山谷晨霧景色" />
+          <img src="https://images.unsplash.com/photo-1504851149312-7a075b496cc7?auto=format&fit=crop&w=900&q=80" alt="夜晚星空下的帳篷" />
+          <img src="https://images.unsplash.com/photo-1533577116850-9cc66cad8a9b?auto=format&fit=crop&w=900&q=80" alt="森林步道與陽光" />
+          <img src="https://images.unsplash.com/photo-1518602164578-cd0074062767?auto=format&fit=crop&w=900&q=80" alt="戶外營火聚會" />
+        </div>
+      </div>
+    </section>
+
+    <section id="location">
+      <div class="section-inner">
+        <div class="section-head">
+          <div class="section-title">
+            <p class="eyebrow">交通資訊</p>
+            <h2>離城市不遠，離自然很近。</h2>
+          </div>
+        </div>
+        <div class="location-grid">
+          <div class="plain-panel">
+            <h3>森嶼露營區</h3>
+            <p>苗栗縣南庄鄉森嶼路 66 號<br />入住時間 14:00 後，退房時間 11:00 前。</p>
+            <p>開車：國道一號頭份交流道下，接 124 縣道約 35 分鐘。大眾運輸：搭至竹南站後轉乘接駁車，需提前預約。</p>
+            <a class="btn" href="#booking">預約接駁或訂位</a>
+          </div>
+          <div class="map-panel" aria-label="營區示意地圖">
+            <div class="map-marker">營</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-inner">
+        <div class="section-head">
+          <div class="section-title">
+            <p class="eyebrow">常見問題</p>
+            <h2>出發前先確認這些事。</h2>
+          </div>
+        </div>
+        <div class="faq-list">
+          <details open>
+            <summary>可以攜帶寵物嗎？</summary>
+            <p>草地自搭帳區可攜帶寵物，請繫牽繩並自行清潔；免搭帳棚屋目前不開放寵物入住。</p>
+          </details>
+          <details>
+            <summary>下雨是否能取消或延期？</summary>
+            <p>中央氣象署發布陸上颱風警報或豪雨特報時可免費延期一次；一般降雨依訂位規則辦理。</p>
+          </details>
+          <details>
+            <summary>營區有提供 Wi-Fi 嗎？</summary>
+            <p>服務中心周邊提供 Wi-Fi，營位區建議以行動網路為主，部分森林邊緣訊號較弱。</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div><strong>森嶼露營區</strong><br />訂位專線 03-765-6688｜LINE @forestcamp</div>
+      <div>© 2026 Mori Isle Campground</div>
+    </div>
+  </footer>
+
+  <script>
+    const form = document.querySelector("#bookingForm");
+    const checkin = document.querySelector("#checkin");
+    const checkout = document.querySelector("#checkout");
+    const siteType = document.querySelector("#siteType");
+    const sitesCount = document.querySelector("#sitesCount");
+    const adults = document.querySelector("#adults");
+    const children = document.querySelector("#children");
+    const addons = document.querySelector("#addons");
+    const formMessage = document.querySelector("#formMessage");
+
+    const nightsText = document.querySelector("#nightsText");
+    const priceText = document.querySelector("#priceText");
+    const countText = document.querySelector("#countText");
+    const addonText = document.querySelector("#addonText");
+    const totalText = document.querySelector("#totalText");
+
+    const currency = new Intl.NumberFormat("zh-TW", {
+      style: "currency",
+      currency: "TWD",
+      maximumFractionDigits: 0
+    });
+
+    function toDateValue(date) {
+      return date.toISOString().slice(0, 10);
+    }
+
+    function setDefaultDates() {
+      const today = new Date();
+      const tomorrow = new Date(today);
+      tomorrow.setDate(today.getDate() + 1);
+      const dayAfter = new Date(today);
+      dayAfter.setDate(today.getDate() + 2);
+      checkin.min = toDateValue(today);
+      checkout.min = toDateValue(tomorrow);
+      checkin.value = toDateValue(tomorrow);
+      checkout.value = toDateValue(dayAfter);
+    }
+
+    function getNights() {
+      const start = new Date(checkin.value);
+      const end = new Date(checkout.value);
+      const diff = Math.round((end - start) / 86400000);
+      return Math.max(diff || 1, 1);
+    }
+
+    function updateCheckoutMin() {
+      const start = new Date(checkin.value);
+      start.setDate(start.getDate() + 1);
+      checkout.min = toDateValue(start);
+      if (!checkout.value || new Date(checkout.value) <= new Date(checkin.value)) {
+        checkout.value = toDateValue(start);
+      }
+    }
+
+    function updateSummary() {
+      updateCheckoutMin();
+      const option = siteType.selectedOptions[0];
+      const nightly = Number(option.dataset.price);
+      const count = Number(sitesCount.value);
+      const nights = getNights();
+      const guestCount = Number(adults.value || 0) + Number(children.value || 0);
+      const addonPrice = Number(addons.value);
+      const addonTotal = addonPrice === 1200 ? addonPrice * count : addonPrice * guestCount;
+      const total = nightly * count * nights + addonTotal;
+
+      nightsText.textContent = `${nights} 晚`;
+      priceText.textContent = currency.format(nightly);
+      countText.textContent = `${count}`;
+      addonText.textContent = currency.format(addonTotal);
+      totalText.textContent = currency.format(total);
+    }
+
+    form.addEventListener("input", updateSummary);
+    form.addEventListener("change", updateSummary);
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      updateSummary();
+      const name = document.querySelector("#name").value.trim() || "貴賓";
+      formMessage.textContent = `${name}，已收到您的訂位需求。我們會以電話確認空位、押金與入住細節。`;
+      formMessage.classList.add("show");
+      formMessage.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+
+    setDefaultDates();
+    updateSummary();
+  </script>
+</body>
+</html>
